@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/Pastel.svg?style=flat)](https://github.com/VeinGuo/VGPlayer)
 [![Cocoapod](https://img.shields.io/badge/pod-v0.0.2-blue.svg)](http://cocoadocs.org/docsets/VGPlayer/0.0.1/)
 
-![Banners](https://github.com/targetcloud/TGRefreshOC/blob/master/Banners.png)
+![Banners](https://github.com/targetcloud/TGRefreshOC/blob/master/logo.jpg)
 
 ## Features
 - [x] 支持链式编程配置，程序员的最爱
@@ -82,3 +82,7 @@ pod 'TGRefreshOC'
 
 ## License
 MIT
+
+如果你觉得赞，请Star
+<img src="https://github.com/targetcloud/TGRefreshOC/blob/master/Banners.png" width = "40%" />
+
