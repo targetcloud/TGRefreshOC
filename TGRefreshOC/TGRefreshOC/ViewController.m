@@ -7,13 +7,13 @@
 //
 
 #import "ViewController.h"
-#import "TGRefreshOC.h"
+#import "TGRefresh.h"
 
 #define ScreenW [UIScreen mainScreen].bounds.size.width
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tv;
-@property (nonatomic ,weak) TGRefreshOC *refreshCtl;
+@property (nonatomic ,weak) TGRefreshOC *refreshCtl;//高级用法时这行可以去掉
 @end
 
 @implementation ViewController
@@ -24,10 +24,27 @@
     self.tv.delegate = self;
     self.tv.tableFooterView = [UIView new];
     self.tv.allowsSelection = NO;
+    
     self.automaticallyAdjustsScrollViewInsets=NO;
     
+    //普通用法
     //[self builderAndSetting];
-    [self builderSimple];
+    
+    //简化成一句话用法
+    //[self builderSimple];
+    
+    //高级用法
+    [self buildSenior];
+}
+
+-(void)buildSenior{
+    self.tv.tg_header = [[TGRefreshOC alloc] initWithConfig:^(TGRefreshOC *refresh) {
+        refresh.tg_refreshResultBgColor([[UIColor orangeColor] colorWithAlphaComponent:0.8])
+        .tg_bgColor([UIColor colorWithWhite:0.8 alpha:1])
+        .tg_refreshResultTextColor([UIColor whiteColor]);
+        [refresh addTarget:self action:@selector(doRefreshSenior) forControlEvents:UIControlEventValueChanged];
+    }];
+    [self.tv.tg_header beginRefreshing];//一进入界面需要刷新写这一行
 }
 
 -(void)builderSimple{
@@ -93,6 +110,13 @@
     });
 }
 
+- (void)doRefreshSenior{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.tv.tg_header.refreshResultStr = @"成功刷新数据来自高级用法";
+        [self.tv.tg_header endRefreshing];
+    });
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 10;
 }
@@ -109,39 +133,37 @@
 
 /*
  测试24种组合
- 无对齐，默认对齐（上）    无contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
- 中对齐                 无contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
- 下对齐                 无contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
+ 1 无对齐，默认对齐（上）    无contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
+ 2 中对齐                 无contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
+ 3 下对齐                 无contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
  
- 无对齐，默认对齐（上）    无contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
- 中对齐                 无contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
- 下对齐                 无contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
+ 4 无对齐，默认对齐（上）    无contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
+ 5 中对齐                 无contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
+ 6 下对齐                 无contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
  
- 无对齐，默认对齐（上）    有contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
- 中对齐                 有contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
- 下对齐                 有contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
+ 7 无对齐，默认对齐（上）    有contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
+ 8 中对齐                 有contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
+ 9 下对齐                 有contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
  
- 无对齐，默认对齐（上）    有contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
- 中对齐                 有contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
- 下对齐                 有contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
+ 10无对齐，默认对齐（上）    有contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
+ 11中对齐                 有contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
+ 12下对齐                 有contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
  
- 无对齐，默认对齐（上）    无contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
- 中对齐                 无contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
- 下对齐                 无contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
+ 13无对齐，默认对齐（上）    无contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
+ 14中对齐                 无contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
+ 15下对齐                 无contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
  
- 无对齐，默认对齐（上）    无contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
- 中对齐                 无contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
- 下对齐                 无contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
+ 16无对齐，默认对齐（上）    无contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
+ 17中对齐                 无contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
+ 18下对齐                 无contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
  
- 无对齐，默认对齐（上）    有contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
- 中对齐                 有contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
- 下对齐                 有contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
+ 19无对齐，默认对齐（上）    有contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
+ 20中对齐                 有contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
+ 21下对齐                 有contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
  
- 无对齐，默认对齐（上）    有contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
- 中对齐                 有contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
- 下对齐                 有contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
+ 22无对齐，默认对齐（上）    有contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
+ 23中对齐                 有contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
+ 24下对齐                 有contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
  */
-
-
 
 @end

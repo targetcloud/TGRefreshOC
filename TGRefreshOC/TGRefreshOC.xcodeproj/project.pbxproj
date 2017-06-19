@@ -15,6 +15,7 @@
 		6AEDAAF51EF7C1C1002C886D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AEDAAF31EF7C1C1002C886D /* LaunchScreen.storyboard */; };
 		6AEDAAFE1EF7C3E8002C886D /* TGRefreshOC.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6AEDAAFD1EF7C3E8002C886D /* TGRefreshOC.bundle */; };
 		6AEDAB011EF7C44B002C886D /* TGRefreshOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AEDAB001EF7C44B002C886D /* TGRefreshOC.m */; };
+		6AEDAB041EF83E79002C886D /* UIScrollView+TGRefreshOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AEDAB031EF83E79002C886D /* UIScrollView+TGRefreshOC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,9 @@
 		6AEDAAFD1EF7C3E8002C886D /* TGRefreshOC.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TGRefreshOC.bundle; sourceTree = "<group>"; };
 		6AEDAAFF1EF7C44B002C886D /* TGRefreshOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGRefreshOC.h; sourceTree = "<group>"; };
 		6AEDAB001EF7C44B002C886D /* TGRefreshOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRefreshOC.m; sourceTree = "<group>"; };
+		6AEDAB021EF83E79002C886D /* UIScrollView+TGRefreshOC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+TGRefreshOC.h"; sourceTree = "<group>"; };
+		6AEDAB031EF83E79002C886D /* UIScrollView+TGRefreshOC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+TGRefreshOC.m"; sourceTree = "<group>"; };
+		6AEDAB051EF8455A002C886D /* TGRefresh.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGRefresh.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,8 +92,11 @@
 		6AEDAAFC1EF7C201002C886D /* TGRefreshOC */ = {
 			isa = PBXGroup;
 			children = (
+				6AEDAB051EF8455A002C886D /* TGRefresh.h */,
 				6AEDAAFF1EF7C44B002C886D /* TGRefreshOC.h */,
 				6AEDAB001EF7C44B002C886D /* TGRefreshOC.m */,
+				6AEDAB021EF83E79002C886D /* UIScrollView+TGRefreshOC.h */,
+				6AEDAB031EF83E79002C886D /* UIScrollView+TGRefreshOC.m */,
 				6AEDAAFD1EF7C3E8002C886D /* TGRefreshOC.bundle */,
 			);
 			path = TGRefreshOC;
@@ -168,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AEDAB011EF7C44B002C886D /* TGRefreshOC.m in Sources */,
+				6AEDAB041EF83E79002C886D /* UIScrollView+TGRefreshOC.m in Sources */,
 				6AEDAAED1EF7C1C1002C886D /* ViewController.m in Sources */,
 				6AEDAAEA1EF7C1C1002C886D /* AppDelegate.m in Sources */,
 				6AEDAAE71EF7C1C1002C886D /* main.m in Sources */,
