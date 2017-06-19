@@ -93,8 +93,8 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
                         [self beginRefreshing];
                     }
                 }
-                self.tipLabel.alpha = self.automaticallyChangeAlpha ? ((height-kBeginHeight*0.5)/kBeginHeight) :
-                (self.verticalAlignment == TGRefreshAlignmentTop ? ((height-kBeginHeight*0.5)/kBeginHeight) : 1);
+                self.tipLabel.alpha = self.automaticallyChangeAlpha ? (height/kBeginHeight) :
+                (self.verticalAlignment == TGRefreshAlignmentTop ? (height/kBeginHeight) : 1);
                 self.tipIcon.alpha = self.tipLabel.alpha;
                 [self setNeedsDisplay];
             }
@@ -200,7 +200,8 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
         case RefreshKindNormal:
             switch (_verticalAlignment) {
                 case TGRefreshAlignmentTop:
-                    self.tipLabel.center = kCenter;
+//                    self.tipLabel.center = kCenter;
+                    self.tipLabel.center = CGPointMake(self.bounds.size.width * 0.5,initInsetTop_ + kBeginHeight * 0.5);
                     break;
                 case TGRefreshAlignmentMidden:
                     self.tipLabel.center = CGPointMake(self.bounds.size.width * 0.5,fabs(self.frame.origin.y*0.5));
@@ -370,11 +371,11 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
 }
 
 -(UIColor *) refreshResultBgColor{
-    return _refreshResultBgColor ? _refreshResultBgColor : [self.tinColor colorWithAlphaComponent:0.3];
+    return _refreshResultBgColor ? _refreshResultBgColor : [self.tinColor colorWithAlphaComponent:0.8];
 }
 
 -(UIColor *) refreshResultTextColor{
-    return _refreshResultTextColor ? _refreshResultTextColor : self.tinColor;
+    return _refreshResultTextColor ? _refreshResultTextColor : [UIColor whiteColor];
 }
 
 -(CGFloat) refreshResultHeight{
@@ -452,91 +453,91 @@ CGPoint relative(CGPoint point, CGFloat x, CGFloat y){
 }
 
 #pragma mark : - 链式配置相关
--(TGRefreshOC * (^)(TGRefreshKind))Kind{
+-(TGRefreshOC * (^)(TGRefreshKind))tg_kind{
     return ^(TGRefreshKind kind){
         self.kind = kind;
         return self;
     };
 }
 
--(TGRefreshOC * (^)(UIColor *))BgColor{
+-(TGRefreshOC * (^)(UIColor *))tg_bgColor{
     return ^(UIColor *color){
         self.bgColor = color;
         return self;
     };
 }
 
--(TGRefreshOC * (^)(UIColor *))TinColor{
+-(TGRefreshOC * (^)(UIColor *))tg_tinColor{
     return ^(UIColor *color){
         self.tinColor = color;
         return self;
     };
 }
 
--(TGRefreshOC * (^)(TGRefreshAlignment))VerticalAlignment{
+-(TGRefreshOC * (^)(TGRefreshAlignment))tg_verticalAlignment{
     return ^(TGRefreshAlignment vl){
         self.verticalAlignment = vl;
         return self;
     };
 }
 
--(TGRefreshOC * (^)(NSString *))RefreshSuccessStr{
+-(TGRefreshOC * (^)(NSString *))tg_refreshSuccessStr{
     return ^(NSString *str){
         self.refreshSuccessStr = str;
         return self;
     };
 }
 
--(TGRefreshOC * (^)(NSString *))RefreshNormalStr{
+-(TGRefreshOC * (^)(NSString *))tg_refreshNormalStr{
     return ^(NSString *str){
         self.refreshNormalStr = str;
         return self;
     };
 }
 
--(TGRefreshOC * (^)(NSString *))RefreshPullingStr{
+-(TGRefreshOC * (^)(NSString *))tg_refreshPullingStr{
     return ^(NSString *str){
         self.refreshPullingStr = str;
         return self;
     };
 }
 
--(TGRefreshOC * (^)(NSString *))RefreshingStr{
+-(TGRefreshOC * (^)(NSString *))tg_refreshingStr{
     return ^(NSString *str){
         self.refreshingStr = str;
         return self;
     };
 }
 
--(TGRefreshOC * (^)(NSString *))RefreshResultStr{
+-(TGRefreshOC * (^)(NSString *))tg_refreshResultStr{
     return ^(NSString *str){
         self.refreshResultStr = str;
         return self;
     };
 }
 
--(TGRefreshOC * (^)(UIColor *))RefreshResultBgColor{
+-(TGRefreshOC * (^)(UIColor *))tg_refreshResultBgColor{
     return ^(UIColor *color){
         self.refreshResultBgColor = color;
         return self;
     };
 }
 
--(TGRefreshOC * (^)(UIColor *))RefreshResultTextColor{
+-(TGRefreshOC * (^)(UIColor *))tg_refreshResultTextColor{
     return ^(UIColor *color){
         self.refreshResultTextColor = color;
         return self;
     };
 }
 
--(TGRefreshOC * (^)(CGFloat))RefreshResultHeight{
+-(TGRefreshOC * (^)(CGFloat))tg_refreshResultHeight{
     return ^(CGFloat height){
         self.refreshResultHeight = height;
         return self;
     };
 }
 
--(TGRefreshOC * (^)(BOOL))AutomaticallyChangeAlpha{
+-(TGRefreshOC * (^)(BOOL))tg_automaticallyChangeAlpha{
     return ^(BOOL autoAlpha){
         self.automaticallyChangeAlpha = autoAlpha;
         return self;
