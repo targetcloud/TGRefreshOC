@@ -42,6 +42,21 @@
 
 //最好用法
 -(void)buildBest{
+    //默认为QQ效果
+    self.tv.tg_header = [TGRefreshOC  refreshWithTarget:self action:@selector(doRefreshSenior) config:nil];
+    [self.tv.tg_header beginRefreshing];
+}
+
+-(void)buildBest2{
+    //普通效果
+    self.tv.tg_header = [TGRefreshOC  refreshWithTarget:self action:@selector(doRefreshSenior) config:^(TGRefreshOC *refresh) {
+        refresh.tg_kind(RefreshKindNormal);
+    }];
+    [self.tv.tg_header beginRefreshing];
+}
+
+-(void)buildBest3{
+    //更多配置，使用链式编程配置
     self.tv.tg_header = [TGRefreshOC  refreshWithTarget:self action:@selector(doRefreshSenior) config:^(TGRefreshOC *refresh) {
         refresh.tg_refreshResultBgColor([[UIColor orangeColor] colorWithAlphaComponent:0.8])
         .tg_bgColor([UIColor colorWithWhite:0.8 alpha:1])
