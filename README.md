@@ -84,5 +84,5 @@ pod 'TGRefreshOC'
 MIT
 
 如果你觉得赞，请Star
-<img src="https://github.com/targetcloud/TGRefreshOC/blob/master/Banners.png" width = "40%" />
+<img src="https://github.com/targetcloud/TGRefreshOC/blob/master/Banners.png" width = "20%" hight = "20%"/>
 
