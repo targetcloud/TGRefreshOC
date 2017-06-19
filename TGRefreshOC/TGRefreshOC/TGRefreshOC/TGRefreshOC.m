@@ -38,6 +38,14 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
     CGFloat initInsetTop_;
 }
 
+#pragma mark : - 创建相关
+-(instancetype) initWithConfig:(void(^)(TGRefreshOC * refresh)) block{
+    if (self = [super init]){
+        !block? : block(self);
+    }
+    return self;
+}
+
 #pragma mark : - KVO相关
 -(void)willMoveToSuperview:(UIView *)newSuperview{
     [super willMoveToSuperview:newSuperview];

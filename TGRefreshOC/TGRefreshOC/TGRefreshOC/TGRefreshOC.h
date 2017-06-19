@@ -50,6 +50,8 @@ typedef NS_ENUM(NSInteger,TGRefreshAlignment) {
 -(TGRefreshOC * (^)(CGFloat))tg_refreshResultHeight;
 -(TGRefreshOC * (^)(BOOL))tg_automaticallyChangeAlpha;
 
+-(instancetype) initWithConfig:(void(^)(TGRefreshOC * refresh)) block;
+
 -(void)beginRefreshing;
 -(void)endRefreshing;
 @end

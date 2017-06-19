@@ -26,6 +26,24 @@
     self.tv.allowsSelection = NO;
     self.automaticallyAdjustsScrollViewInsets=NO;
     
+    //[self builderAndSetting];
+    [self builderSimple];
+}
+
+-(void)builderSimple{
+    TGRefreshOC *refresh = [[TGRefreshOC alloc] initWithConfig:^(TGRefreshOC *refresh) {
+        refresh.tg_refreshResultBgColor([[UIColor orangeColor] colorWithAlphaComponent:0.8])
+               .tg_bgColor([UIColor colorWithWhite:0.8 alpha:1])
+               .tg_refreshResultTextColor([UIColor whiteColor]);
+    }];
+    
+    [self.tv addSubview:refresh];
+    _refreshCtl = refresh;
+    [refresh addTarget:self action:@selector(doRefresh) forControlEvents:UIControlEventValueChanged];
+    [refresh beginRefreshing];//一进入界面需要刷新写这一行
+}
+
+-(void)builderAndSetting{
     //******************有contentInset测试****************
     //可以去掉这段
     UILabel *label = [[UILabel alloc] init];
@@ -41,7 +59,7 @@
     //***************************************************
     
     TGRefreshOC *refresh = [TGRefreshOC new];
-//    refresh.kind = RefreshKindNormal;//QQ效果则注释此行
+    //    refresh.kind = RefreshKindNormal;//QQ效果则注释此行
     
     //配置根据需要写，也可以不写任何配置
     //*****************普通配置***************************
@@ -54,12 +72,12 @@
     //*****************链式配置***************************
     //与上面普通配置二选一，也可以一起写
     refresh.tg_refreshResultBgColor([[UIColor orangeColor] colorWithAlphaComponent:0.8])
-           .tg_refreshResultTextColor([UIColor whiteColor])
-           .tg_refreshResultHeight(38)
-           .tg_refreshNormalStr(@"pull down refresh")
-           .tg_refreshPullingStr(@"let go")
-           .tg_refreshingStr(@"refreshing...")
-           .tg_refreshSuccessStr(@"success");
+    .tg_refreshResultTextColor([UIColor whiteColor])
+    .tg_refreshResultHeight(38)
+    .tg_refreshNormalStr(@"pull down refresh")
+    .tg_refreshPullingStr(@"let go")
+    .tg_refreshingStr(@"refreshing...")
+    .tg_refreshSuccessStr(@"success");
     //***************************************************
     
     [self.tv addSubview:refresh];
@@ -67,7 +85,6 @@
     [refresh addTarget:self action:@selector(doRefresh) forControlEvents:UIControlEventValueChanged];
     [refresh beginRefreshing];//一进入界面需要刷新写这一行
 }
-
 
 - (void)doRefresh{
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
