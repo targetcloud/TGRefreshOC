@@ -110,17 +110,15 @@ pod 'TGRefreshOC'
 
 ## Reference
 - http://blog.csdn.net/callzjy
-
-## License
-MIT
+- https://github.com/targetcloud/baisibudejie
 
 ## 运行效果
 ![](https://github.com/targetcloud/baisibudejie/blob/master/refresha.gif) 
 
-- demo中的弹簧效果
+## demo中的弹簧效果
 ![](https://github.com/targetcloud/TGRefreshOC/blob/master/refresha.gif)
 
-- demo中的Normal效果
+## demo中的Normal效果
 ![](https://github.com/targetcloud/TGRefreshOC/blob/master/refreshb.gif)
 
 如果你觉得赞，请Star
