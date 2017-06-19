@@ -34,19 +34,34 @@
     //[self builderSimple];
     
     //高级用法
-    [self buildSenior];
+    //[self buildSenior];
+    
+    //最好用法
+    [self buildBest];
 }
 
--(void)buildSenior{
-    self.tv.tg_header = [[TGRefreshOC alloc] initWithConfig:^(TGRefreshOC *refresh) {
+//最好用法
+-(void)buildBest{
+    self.tv.tg_header = [TGRefreshOC  refreshWithTarget:self action:@selector(doRefreshSenior) config:^(TGRefreshOC *refresh) {
         refresh.tg_refreshResultBgColor([[UIColor orangeColor] colorWithAlphaComponent:0.8])
         .tg_bgColor([UIColor colorWithWhite:0.8 alpha:1])
         .tg_refreshResultTextColor([UIColor whiteColor]);
-        [refresh addTarget:self action:@selector(doRefreshSenior) forControlEvents:UIControlEventValueChanged];
     }];
-    [self.tv.tg_header beginRefreshing];//一进入界面需要刷新写这一行
+    [self.tv.tg_header beginRefreshing];
 }
 
+//高级用法
+-(void)buildSenior{
+    self.tv.tg_header = [[TGRefreshOC alloc] initWithConfig:^(TGRefreshOC *refresh) {
+        refresh.tg_refreshResultBgColor([[UIColor orangeColor] colorWithAlphaComponent:0.8])
+               .tg_bgColor([UIColor colorWithWhite:0.8 alpha:1])
+               .tg_refreshResultTextColor([UIColor whiteColor]);
+        [refresh addTarget:self action:@selector(doRefreshSenior) forControlEvents:UIControlEventValueChanged];
+    }];
+    [self.tv.tg_header beginRefreshing];
+}
+
+//简化成一句话用法
 -(void)builderSimple{
     TGRefreshOC *refresh = [[TGRefreshOC alloc] initWithConfig:^(TGRefreshOC *refresh) {
         refresh.tg_refreshResultBgColor([[UIColor orangeColor] colorWithAlphaComponent:0.8])
@@ -57,9 +72,10 @@
     [self.tv addSubview:refresh];
     _refreshCtl = refresh;
     [refresh addTarget:self action:@selector(doRefresh) forControlEvents:UIControlEventValueChanged];
-    [refresh beginRefreshing];//一进入界面需要刷新写这一行
+    [refresh beginRefreshing];
 }
 
+//普通用法
 -(void)builderAndSetting{
     //******************有contentInset测试****************
     //可以去掉这段

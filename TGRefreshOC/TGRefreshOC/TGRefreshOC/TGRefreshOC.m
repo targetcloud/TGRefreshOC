@@ -46,6 +46,12 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
     return self;
 }
 
++(instancetype) refreshWithTarget:(id)target action:(SEL)action config:(void(^)(TGRefreshOC * refresh)) block{
+    TGRefreshOC * refresh = [[self alloc] initWithConfig:block];
+    [refresh addTarget:target action:action forControlEvents:UIControlEventValueChanged];
+    return refresh;
+}
+
 #pragma mark : - KVO相关
 -(void)willMoveToSuperview:(UIView *)newSuperview{
     [super willMoveToSuperview:newSuperview];
