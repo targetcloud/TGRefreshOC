@@ -204,7 +204,8 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
                     self.tipLabel.center = CGPointMake(self.bounds.size.width * 0.5,initInsetTop_ + kBeginHeight * 0.5);
                     break;
                 case TGRefreshAlignmentMidden:
-                    self.tipLabel.center = CGPointMake(self.bounds.size.width * 0.5,fabs(self.frame.origin.y*0.5));
+//                    self.tipLabel.center = CGPointMake(self.bounds.size.width * 0.5,fabs(self.frame.origin.y*0.5));
+                    self.tipLabel.center = CGPointMake(self.bounds.size.width * 0.5,initInsetTop_ + (fabs(self.frame.origin.y) - initInsetTop_)* 0.5);
                     break;
                 case TGRefreshAlignmentBottom:
                     self.tipLabel.center = CGPointMake(self.bounds.size.width * 0.5,fabs(self.frame.origin.y) - kBeginHeight * 0.5 );

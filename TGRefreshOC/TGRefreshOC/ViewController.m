@@ -29,7 +29,7 @@
     //******************有contentInset测试****************
     //可以去掉这段
     UILabel *label = [[UILabel alloc] init];
-    label.backgroundColor = [UIColor redColor];
+    label.backgroundColor = [UIColor lightGrayColor];
     label.frame = CGRectMake(0, -80, ScreenW, 80);
     label.font = [UIFont systemFontOfSize:13];
     label.numberOfLines = 0;
@@ -47,7 +47,7 @@
     //*****************普通配置***************************
     //与下面链式配置二选一，也可以一起写
 //    refresh.bgColor =  [UIColor colorWithWhite:0.8 alpha:1];
-//    refresh.verticalAlignment = TGRefreshAlignmentBottom;
+    refresh.verticalAlignment = TGRefreshAlignmentMidden;
     refresh.automaticallyChangeAlpha = YES;
     //***************************************************
     
@@ -104,8 +104,8 @@
  中对齐                 有contentInset    normal类型    automaticallyChangeAlpha（NO）
  下对齐                 有contentInset    normal类型    automaticallyChangeAlpha（NO）
  
- 无对齐，默认对齐（上）    有contentInset    normal类型    automaticallyChangeAlpha（YES）
- 中对齐                 有contentInset    normal类型    automaticallyChangeAlpha（YES）
+ 无对齐，默认对齐（上）    有contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
+ 中对齐                 有contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
  下对齐                 有contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
  
  无对齐，默认对齐（上）    无contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
