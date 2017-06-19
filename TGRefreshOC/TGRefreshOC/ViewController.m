@@ -158,7 +158,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"第%ld行测试数据",indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"第%ld行测试数据",(long)indexPath.row];
     return cell;
 }
 
