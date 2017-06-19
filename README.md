@@ -21,7 +21,7 @@
 - [x] 用例丰富，快速上手
 
 ## Usage
-首先写上这一句
+首先写上这一句（必须的）
 ```
 #import <TGRefresh.h>
 ```
@@ -67,7 +67,38 @@ self.tableview.tg_header = [TGRefreshOC  refreshWithTarget:self action:@selector
         [self.tableview.tg_header endRefreshing];
 ```
 
-### 更多使用配置请下载或fork
+### 可以配置的属性
+```
+/** 类型，默认为QQ弹簧 皮筋效果 */
+@property(nonatomic,assign) TGRefreshKind kind;
+/** 背景色（在有contentInset时为scrollview等背景色） */
+@property(nonatomic,strong) UIColor * bgColor;
+/** 主题色（刷新文字颜色、ActivityIndicator颜色、橡皮筯颜色） */
+@property(nonatomic,strong) UIColor * tinColor;
+/** 垂直对齐，默认顶部 */
+@property(nonatomic,assign) TGRefreshAlignment verticalAlignment;
+/** 刷新成功时的提示文字 */
+@property(nonatomic,copy) NSString * refreshSuccessStr;
+/** 准备刷新时的提示文字 */
+@property(nonatomic,copy) NSString * refreshNormalStr;
+/** 即将刷新时的提示文字 */
+@property(nonatomic,copy) NSString * refreshPullingStr;
+/** 正在刷新时的提示文字 */
+@property(nonatomic,copy) NSString * refreshingStr;
+/** 更新结果的回显文字 */
+@property(nonatomic,copy) NSString * refreshResultStr;
+/** 更新结果的回显背景色 */
+@property(nonatomic,strong) UIColor * refreshResultBgColor;
+/** 更新结果的回显文字颜色 */
+@property(nonatomic,strong) UIColor * refreshResultTextColor;
+/** 更新结果的回显高度 */
+@property(nonatomic,assign) CGFloat refreshResultHeight;
+/** 自动改变透明度，默认已做优化 */
+@property(nonatomic,assign) BOOL automaticallyChangeAlpha;
+```
+#### 使用链式编程配置时，请在所有属性前加tg_前缀即可
+
+### 更多使用配置组合效果请下载本项目或fork本项目查看
 
 ## Installation
 - 下载并拖动TGRefreshOC到你的工程中，只需要拖动包含TGRefresh.h这一文件的目录即可
@@ -82,6 +113,15 @@ pod 'TGRefreshOC'
 
 ## License
 MIT
+
+## 运行效果
+![](https://github.com/targetcloud/baisibudejie/blob/master/refresha.gif) 
+
+- demo中的弹簧效果
+![](https://github.com/targetcloud/TGRefreshOC/blob/master/refresha.gif）
+
+- demo中的Normal效果
+![](https://github.com/targetcloud/TGRefreshOC/blob/master/refreshb.gif）
 
 如果你觉得赞，请Star
 
