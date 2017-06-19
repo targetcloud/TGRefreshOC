@@ -118,10 +118,10 @@ MIT
 ![](https://github.com/targetcloud/baisibudejie/blob/master/refresha.gif) 
 
 - demo中的弹簧效果
-![](https://github.com/targetcloud/TGRefreshOC/blob/master/refresha.gif）
+![](https://github.com/targetcloud/TGRefreshOC/blob/master/refresha.gif)
 
 - demo中的Normal效果
-![](https://github.com/targetcloud/TGRefreshOC/blob/master/refreshb.gif）
+![](https://github.com/targetcloud/TGRefreshOC/blob/master/refreshb.gif)
 
 如果你觉得赞，请Star
 
