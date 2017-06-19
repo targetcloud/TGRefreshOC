@@ -195,7 +195,8 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
     switch (_kind) {
         case RefreshKindQQ:
             self.alpha = self.frame.size.height/kBeginHeight;
-            self.activityIndicatorView.center = CGPointMake(kCenter.x, initInsetTop_ > 0 ? -kCenter.y : kCenter.y);
+//            self.activityIndicatorView.center = CGPointMake(kCenter.x, initInsetTop_ > 0 ? -kCenter.y : kCenter.y);
+            self.activityIndicatorView.center = kCenter;
             break;
         case RefreshKindNormal:
             switch (_verticalAlignment) {
