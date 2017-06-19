@@ -45,6 +45,7 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
     initInsetTop_ = self.sv.contentInset.top;
     self.backgroundColor = self.bgColor;
     self.frame = CGRectMake(0, -kBeginHeight, newSuperview.bounds.size.width, kBeginHeight);
+    self.clipsToBounds = YES;
     [self.sv addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew context:nil];
 }
 
