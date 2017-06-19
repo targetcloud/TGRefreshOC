@@ -465,10 +465,14 @@ CGPoint relative(CGPoint point, CGFloat x, CGFloat y){
 
 #pragma mark : - 资源相关
 -(UIImage *)getImage:(NSString *)name{
+    /*
     NSBundle *currentBundle = [NSBundle bundleForClass:[self class]];
     NSString *resourcePath = [currentBundle.infoDictionary[@"CFBundleName"] stringByAppendingString:@".bundle"];
     NSString *imgPath = [currentBundle pathForResource:name ofType:@".png" inDirectory:resourcePath];
     UIImage *img = [UIImage imageWithContentsOfFile:imgPath];
+    */
+    NSBundle *currentBundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[TGRefreshOC class]] pathForResource:@"TGRefreshOC" ofType:@"bundle"]];
+    UIImage *img =  [UIImage imageWithContentsOfFile:[currentBundle pathForResource:name ofType:@"png"]];
     return img;
 }
 
