@@ -59,7 +59,7 @@
            .tg_refreshNormalStr(@"pull down refresh")
            .tg_refreshPullingStr(@"let go")
            .tg_refreshingStr(@"refreshing...")
-           .tg_refreshSuccessStr(@"");//success
+           .tg_refreshSuccessStr(@"success");
     //***************************************************
     
     [self.tv addSubview:refresh];

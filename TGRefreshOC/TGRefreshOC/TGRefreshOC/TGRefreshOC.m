@@ -251,7 +251,11 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
     [self.tipLabel sizeToFit];
     [self.tipIcon sizeToFit];
     self.tipLabel.center = self.activityIndicatorView.center;
-    self.tipIcon.center = CGPointMake(self.tipLabel.frame.origin.x - self.tipIcon.frame.size.width - 3, self.activityIndicatorView.center.y);
+    
+    self.tipIcon.center = CGPointMake((self.tipLabel.frame.size.width < 1 ?
+                                       self.activityIndicatorView.center.x :
+                                       (self.tipLabel.frame.origin.x - (self.tipIcon.frame.size.width + 3))),
+                                       self.activityIndicatorView.center.y);
     self.tipIcon.hidden = NO;
     self.tipLabel.hidden = NO;
     [self.activityIndicatorView stopAnimating];
