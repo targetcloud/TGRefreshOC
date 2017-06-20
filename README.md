@@ -8,8 +8,10 @@
 ![Platform](https://img.shields.io/cocoapods/p/Pastel.svg?style=flat)
 ![Cocoapod](https://img.shields.io/badge/pod-v0.1.0-blue.svg)
 
-## recently updated
+
+## Recently Updated
 - 0.1.0 去掉了计时器，提高了性能，同时增加了容错性设计处理
+
 
 ## Features
 - [x] 支持链式编程配置，程序员的最爱
@@ -22,6 +24,7 @@
 - [x] 支持刷新结果回显配置
 - [x] 超轻量级、使用超灵活、功能超强大
 - [x] 用例丰富，快速上手
+
 
 ## Usage
 首先写上这一句（必须的）
