@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "TGRefreshOC"
-  s.version      = "0.0.2"
-  s.summary      = "高仿QQ下拉刷新控件，同时支持其他样式"
+  s.version      = "0.0.3"
+  s.summary      = "橡皮筋下拉刷新控件，弹簧下拉刷新控件，QQ效果下拉刷新，同时支持其他样式"
   s.homepage     = "https://github.com/targetcloud/TGRefreshOC"
   s.license      = "MIT"
   s.author       = { "targetcloud" => "targetcloud@163.com" }
