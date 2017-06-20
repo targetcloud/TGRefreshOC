@@ -6,7 +6,10 @@
 ![Build](https://img.shields.io/badge/build-passing-green.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)
 ![Platform](https://img.shields.io/cocoapods/p/Pastel.svg?style=flat)
-![Cocoapod](https://img.shields.io/badge/pod-v0.0.3-blue.svg)
+![Cocoapod](https://img.shields.io/badge/pod-v0.1.0-blue.svg)
+
+## recently updated
+- 0.1.0 去掉了计时器，提高了性能，同时增加了容错性设计处理
 
 ## Features
 - [x] 支持链式编程配置，程序员的最爱
