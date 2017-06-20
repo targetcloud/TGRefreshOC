@@ -28,7 +28,7 @@
     self.automaticallyAdjustsScrollViewInsets=NO;
     
     //普通用法
-    //[self builderAndSetting];
+    [self builderAndSetting];
     
     //简化成一句话用法
     //[self builderSimple];
@@ -37,7 +37,7 @@
     //[self buildSenior];
     
     //最好用法
-    [self buildBest];
+    //[self buildBest];
 }
 
 //最好用法
@@ -69,7 +69,7 @@
 -(void)buildSenior{
     self.tv.tg_header = [[TGRefreshOC alloc] initWithConfig:^(TGRefreshOC *refresh) {
         refresh.tg_refreshResultBgColor([[UIColor orangeColor] colorWithAlphaComponent:0.8])
-               .tg_bgColor([UIColor colorWithWhite:0.8 alpha:1])
+               .tg_bgColor([UIColor colorWithWhite:0.9 alpha:1])
                .tg_refreshResultTextColor([UIColor whiteColor]);
         [refresh addTarget:self action:@selector(doRefreshSenior) forControlEvents:UIControlEventValueChanged];
     }];
@@ -94,16 +94,16 @@
 -(void)builderAndSetting{
     //******************有contentInset测试****************
     //可以去掉这段
-    UILabel *label = [[UILabel alloc] init];
-    label.backgroundColor = [UIColor lightGrayColor];
-    label.frame = CGRectMake(0, -80, ScreenW, 80);
-    label.font = [UIFont systemFontOfSize:13];
-    label.numberOfLines = 0;
-    label.textColor = [UIColor whiteColor];
-    label.text = @"TGRefreshOC下拉刷新控件是一款同时支持QQ样式（橡皮筋）和普通样式的下拉刷新控件。支持链式配置,使用更简单。配置参数更多更灵活。 快来使用一下吧，比你想象中更强大哦:）";
-    label.textAlignment = NSTextAlignmentCenter;
-    [self.tv addSubview:label];
-    self.tv.contentInset = UIEdgeInsetsMake(80, 0, 0, 0);
+//    UILabel *label = [[UILabel alloc] init];
+//    label.backgroundColor = [UIColor lightGrayColor];
+//    label.frame = CGRectMake(0, -80, ScreenW, 80);
+//    label.font = [UIFont systemFontOfSize:13];
+//    label.numberOfLines = 0;
+//    label.textColor = [UIColor whiteColor];
+//    label.text = @"TGRefreshOC下拉刷新控件是一款同时支持QQ样式（橡皮筋）和普通样式的下拉刷新控件。支持链式配置,使用更简单。配置参数更多更灵活。 快来使用一下吧，比你想象中更强大哦:）";
+//    label.textAlignment = NSTextAlignmentCenter;
+//    [self.tv addSubview:label];
+//    self.tv.contentInset = UIEdgeInsetsMake(80, 0, 0, 0);
     //***************************************************
     
     TGRefreshOC *refresh = [TGRefreshOC new];

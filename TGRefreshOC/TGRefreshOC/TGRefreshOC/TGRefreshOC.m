@@ -71,11 +71,10 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
     if ([keyPath isEqualToString:@"contentOffset"]) {
         CGPoint point = [change[@"new"] CGPointValue];
         CGFloat height = initInsetTop_>0 ? -(initInsetTop_ + point.y) : -(point.y);//有初始的inset则不用背景色
-        self.frame = CGRectMake(0, -height-initInsetTop_, self.sv.bounds.size.width, height);
-        //NSLog(@"%@",NSStringFromCGRect(self.frame));
         if( height <= 0) {
             return;
         }
+        self.frame = CGRectMake(0, -height-initInsetTop_, self.sv.bounds.size.width, height);
         
         switch (_kind) {
             case RefreshKindQQ:{
@@ -359,7 +358,14 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
 }
 
 -(UIColor *) bgColor{
-    return _bgColor ?  (initInsetTop_ > 0 ? self.sv.backgroundColor : _bgColor) : self.sv.backgroundColor;
+    UIColor * color = _bgColor ?  (initInsetTop_ > 0 ? self.sv.backgroundColor : _bgColor) : self.sv.backgroundColor;
+    CGFloat r;
+    CGFloat g;
+    CGFloat b;
+    CGFloat a;
+    [color getRed:&r green:&g blue:&b alpha:&a];
+    color = [UIColor colorWithRed:r green:g blue:b alpha:1];
+    return color;
 }
 
 -(UIColor *) tinColor{
@@ -484,6 +490,12 @@ CGPoint relative(CGPoint point, CGFloat x, CGFloat y){
 
 -(TGRefreshOC * (^)(UIColor *))tg_bgColor{
     return ^(UIColor *color){
+        CGFloat r;
+        CGFloat g;
+        CGFloat b;
+        CGFloat a;
+        [color getRed:&r green:&g blue:&b alpha:&a];
+        color = [UIColor colorWithRed:r green:g blue:b alpha:1];
         self.bgColor = color;
         return self;
     };
