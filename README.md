@@ -6,7 +6,7 @@
 ![Build](https://img.shields.io/badge/build-passing-green.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)
 ![Platform](https://img.shields.io/cocoapods/p/Pastel.svg?style=flat)
-![Cocoapod](https://img.shields.io/badge/pod-v0.0.2-blue.svg)
+![Cocoapod](https://img.shields.io/badge/pod-v0.0.3-blue.svg)
 
 ## Features
 - [x] 支持链式编程配置，程序员的最爱
