@@ -23,7 +23,6 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
 @property (assign ,nonatomic) CGFloat deltaH;
 @property (weak, nonatomic) UIScrollView *sv;
 @property (weak, nonatomic) UIActivityIndicatorView *activityIndicatorView;
-@property (strong, nonatomic) NSTimer *timer;
 @property (assign, nonatomic,getter=isAnimating) BOOL animating;
 @property (assign, nonatomic,getter=isRefreshing) BOOL refreshing;
 @property (assign,nonatomic) TGRefreshState refreshState;
@@ -80,14 +79,14 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
         
         switch (_kind) {
             case RefreshKindQQ:{
-                if (_animating || _refreshing || self.timer || self.refreshState == RefreshStateRefresh) {//动画中 刷新中 已经在计时缩小过程中 已经在刷新状态
+                if (_animating || _refreshing || self.refreshState == RefreshStateRefresh) {//动画中 刷新中 已经在计时缩小过程中 已经在刷新状态
                     return;
                 }
+                _deltaH = fmaxf(0, -point.y - kBeginHeight - initInsetTop_);
+                self.innerImageView.center = kCenter;
                 [self setNeedsDisplay];
                 if (-point.y > kDragHeight + initInsetTop_) {
                     [self beginRefreshing];
-                }else{
-                    _deltaH = fmaxf(0, -point.y - kBeginHeight - initInsetTop_);
                 }
             }
                 break;
@@ -190,9 +189,16 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
         case RefreshKindQQ:{
             if (!_animating){
                 _animating = YES;
-                NSTimer *timer = [NSTimer timerWithTimeInterval:0.01 target:self selector:@selector(reduce) userInfo:nil repeats:YES];
-                [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
-                _timer = timer;
+                [UIView animateWithDuration:0.25 animations:^{
+                    _deltaH = 0;
+                    [self setNeedsDisplay];
+                } completion:^(BOOL finished) {
+                    self.sv.contentOffset = CGPointMake(0, -(kBeginHeight + initInsetTop_));
+                    _animating = NO;
+                    _refreshing = YES;
+                    [self.activityIndicatorView startAnimating];
+                    _innerImageView.hidden = YES;
+                }];
                 [self sendActionsForControlEvents:UIControlEventValueChanged];
             }
         }
@@ -242,29 +248,10 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
     }
 }
 
--(void)reduce{
-    if (self.timer && _animating){
-        _deltaH -= 20;
-        if (_deltaH<0) _deltaH = 0;
-        [self setNeedsDisplay];
-        if (_deltaH <= 0) {
-            self.sv.contentOffset = CGPointMake(0, -(kBeginHeight + initInsetTop_));
-            [_timer invalidate];
-            _timer = nil;
-            _animating = NO;
-            _refreshing = YES;
-            [self.activityIndicatorView startAnimating];
-            _innerImageView.hidden = YES;
-        }
-    }
-}
-
 -(void)endRefreshing{
     self.tipIcon.transform =  CGAffineTransformIdentity;
     _refreshing = NO;
     _animating = NO;
-    [_timer invalidate];
-    _timer = nil;
     self.tipLabel.text = self.refreshSuccessStr;
     self.tipIcon.image = [self getImage:@"tipok@2x"];
     [self.tipLabel sizeToFit];
@@ -409,6 +396,9 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
 
 #pragma mark : - 控件相关
 -(void)drawRect:(CGRect)rect{
+    if (!CGPointEqualToPoint(self.innerImageView.center,kCenter)){
+        return;
+    }
     switch (_kind) {
         case RefreshKindQQ:
             
@@ -428,36 +418,43 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
     
     _deltaH = _deltaH>(kDragHeight - kBeginHeight)? (kDragHeight - kBeginHeight) : _deltaH;
     
-    CGFloat rad1 = kRadius - _deltaH * 0.1;
-    CGFloat rad2 = kRadius - _deltaH * 0.2;
+    CGFloat radTop = kRadius - _deltaH * 0.1;
+    CGFloat radBottom = kRadius - _deltaH * 0.2;
     CGFloat Y = fmaxf(_deltaH, 0);
     
-    CGFloat rad3 = 0;
-    if ((rad1 - rad2) > 0) {
-        rad3 = (pow(Y, 2)+pow(rad2, 2)-pow(rad1, 2))/(2*(rad1 - rad2));
+    CGFloat radBottomLeftAndRight = 0;
+    if ((radTop - radBottom) > 0) {
+        radBottomLeftAndRight = (pow(Y, 2)+pow(radBottom, 2)-pow(radTop, 2))/(2*(radTop - radBottom));
     }
-    rad3 = fmax(0, rad3);
+    radBottomLeftAndRight = fmax(0, radBottomLeftAndRight);
     
-    CGPoint center2 = relative(startCenter, 0, Y);
-    CGPoint center3 = relative(center2, rad2+rad3, 0);
-    CGPoint center4 = relative(center2, -rad2-rad3, 0);
+    CGPoint centerBottom = relative(startCenter, 0, Y);
+    CGPoint centerRight = relative(centerBottom, radBottom+radBottomLeftAndRight, 0);
+    CGPoint centerLeft = relative(centerBottom, -radBottom-radBottomLeftAndRight, 0);
     
-    UIBezierPath *circle = [UIBezierPath bezierPathWithArcCenter:startCenter radius:rad1 startAngle:0 endAngle:2*M_PI clockwise:1];
-    self.innerImageView.bounds = CGRectMake(0, 0,rad1*2*0.6, rad1*2*0.6);
-    self.innerImageView.center = startCenter;
+    UIBezierPath *circle = [UIBezierPath bezierPathWithArcCenter:startCenter radius:radTop startAngle:0 endAngle:2*M_PI clockwise:1];
+    
+    self.innerImageView.bounds = CGRectMake(0, 0,radTop*2*0.6, radTop*2*0.6);
     self.innerImageView.hidden = NO;
-    [circle moveToPoint:center2];
-    [circle addArcWithCenter:center2 radius:rad2 startAngle:0 endAngle:2*M_PI clockwise:1];
     
-    UIBezierPath *circle2 = [UIBezierPath bezierPathWithArcCenter:center3 radius:rad3 startAngle:0 endAngle:2*M_PI clockwise:1];
-    [circle2 moveToPoint:center4];
-    [circle2 addArcWithCenter:center4 radius:rad3 startAngle:0 endAngle:2*M_PI clockwise:1];
+    if (_deltaH <= 0){
+        [self.tinColor setFill];
+        [circle fill];
+        return;
+    }
+    
+    [circle moveToPoint:centerBottom];
+    [circle addArcWithCenter:centerBottom radius:radBottom startAngle:0 endAngle:2*M_PI clockwise:1];
+    
+    UIBezierPath *circle2 = [UIBezierPath bezierPathWithArcCenter:centerRight radius:radBottomLeftAndRight startAngle:0 endAngle:2*M_PI clockwise:1];
+    [circle2 moveToPoint:centerLeft];
+    [circle2 addArcWithCenter:centerLeft radius:radBottomLeftAndRight startAngle:0 endAngle:2*M_PI clockwise:1];
     
     UIBezierPath *line = [UIBezierPath bezierPath];
     [line moveToPoint:startCenter];
-    [line addLineToPoint:center3];
-    [line addLineToPoint:center2];
-    [line addLineToPoint:center4];
+    [line addLineToPoint:centerRight];
+    [line addLineToPoint:centerBottom];
+    [line addLineToPoint:centerLeft];
     [line closePath];
     [line appendPath:circle];
     [self.tinColor setFill];
@@ -472,12 +469,6 @@ CGPoint relative(CGPoint point, CGFloat x, CGFloat y){
 
 #pragma mark : - 资源相关
 -(UIImage *)getImage:(NSString *)name{
-    /*
-    NSBundle *currentBundle = [NSBundle bundleForClass:[self class]];
-    NSString *resourcePath = [currentBundle.infoDictionary[@"CFBundleName"] stringByAppendingString:@".bundle"];
-    NSString *imgPath = [currentBundle pathForResource:name ofType:@".png" inDirectory:resourcePath];
-    UIImage *img = [UIImage imageWithContentsOfFile:imgPath];
-    */
     NSBundle *currentBundle = [NSBundle bundleWithPath:[[NSBundle bundleForClass:[TGRefreshOC class]] pathForResource:@"TGRefreshOC" ofType:@"bundle"]];
     UIImage *img =  [UIImage imageWithContentsOfFile:[currentBundle pathForResource:name ofType:@"png"]];
     return img;
