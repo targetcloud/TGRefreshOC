@@ -4,9 +4,9 @@
 弹簧、橡皮筋下拉刷新控件，类似QQ下拉刷新控件，但比QQ 更强，同时支持其他样式，目前总共2种样式，后续不断添加中...
 
 ![Build](https://img.shields.io/badge/build-passing-green.svg)
-[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/VeinGuo/VGPlayer/blob/master/LICENSE)
-[![Platform](https://img.shields.io/cocoapods/p/Pastel.svg?style=flat)](https://github.com/VeinGuo/VGPlayer)
-[![Cocoapod](https://img.shields.io/badge/pod-v0.0.2-blue.svg)](http://cocoadocs.org/docsets/VGPlayer/0.0.1/)
+![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)
+![Platform](https://img.shields.io/cocoapods/p/Pastel.svg?style=flat)
+![Cocoapod](https://img.shields.io/badge/pod-v0.0.2-blue.svg)
 
 ## Features
 - [x] 支持链式编程配置，程序员的最爱
