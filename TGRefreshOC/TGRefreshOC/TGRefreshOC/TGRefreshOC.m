@@ -179,10 +179,13 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
         return;
     }
     self.refreshState = RefreshStateRefresh;
-    self.sv.contentOffset = CGPointMake(0, -(kBeginHeight + initInsetTop_));
-    UIEdgeInsets insets = self.sv.contentInset;
-    insets.top += kBeginHeight;
-    self.sv.contentInset = insets;
+    [UIView animateWithDuration:0.25 animations:^{
+        UIEdgeInsets insets = self.sv.contentInset;
+        insets.top += kBeginHeight;
+        self.sv.contentInset = insets;
+    } completion:^(BOOL finished) {
+        
+    }];
     switch (_kind) {
         case RefreshKindQQ:{
             if (!_animating){
@@ -241,9 +244,11 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
 
 -(void)reduce{
     if (self.timer && _animating){
-        _deltaH -= 10;
+        _deltaH -= 20;
+        if (_deltaH<0) _deltaH = 0;
         [self setNeedsDisplay];
         if (_deltaH <= 0) {
+            self.sv.contentOffset = CGPointMake(0, -(kBeginHeight + initInsetTop_));
             [_timer invalidate];
             _timer = nil;
             _animating = NO;
@@ -420,6 +425,8 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
     }
     
     CGPoint startCenter = kCenter;
+    
+    _deltaH = _deltaH>(kDragHeight - kBeginHeight)? (kDragHeight - kBeginHeight) : _deltaH;
     
     CGFloat rad1 = kRadius - _deltaH * 0.1;
     CGFloat rad2 = kRadius - _deltaH * 0.2;
