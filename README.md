@@ -6,10 +6,11 @@
 ![Build](https://img.shields.io/badge/build-passing-green.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)
 ![Platform](https://img.shields.io/cocoapods/p/Pastel.svg?style=flat)
-![Cocoapod](https://img.shields.io/badge/pod-v0.1.0-blue.svg)
+![Cocoapod](https://img.shields.io/badge/pod-v0.1.1-blue.svg)
 
 
 ## Recently Updated
+- 0.1.1 优化并增强容错设计处理
 - 0.1.0 去掉了计时器，提高了性能，同时增加了容错性设计处理
 
 
