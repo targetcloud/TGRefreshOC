@@ -6,10 +6,11 @@
 ![Build](https://img.shields.io/badge/build-passing-green.svg)
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)
 ![Platform](https://img.shields.io/cocoapods/p/Pastel.svg?style=flat)
-![Cocoapod](https://img.shields.io/badge/pod-v0.1.1-blue.svg)
+![Cocoapod](https://img.shields.io/badge/pod-v0.1.2-blue.svg)
 
 
 ## Recently Updated
+- 0.1.2 增加回显信息的渐显与渐隐时间属性设置
 - 0.1.1 优化并增强容错设计处理
 - 0.1.0 去掉了计时器，提高了性能，同时增加了容错性设计处理
 
@@ -102,6 +103,10 @@ self.tableview.tg_header = [TGRefreshOC  refreshWithTarget:self action:@selector
 @property(nonatomic,assign) CGFloat refreshResultHeight;
 /** 自动改变透明度，默认已做优化 */
 @property(nonatomic,assign) BOOL automaticallyChangeAlpha;
+/** 回显时的渐显时间 0.1 ～ 2秒 默认0.5 */
+@property(nonatomic,assign) CGFloat fadeinTime;
+/** 回赤时的渐隐时间 0.1 ～ 5秒 默认1.5 */
+@property(nonatomic,assign) CGFloat fadeoutTime;
 ```
 #### 使用链式编程配置时，请在所有属性前加tg_前缀即可
 
