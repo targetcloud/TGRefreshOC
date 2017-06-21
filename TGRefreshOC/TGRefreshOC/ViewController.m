@@ -28,7 +28,7 @@
     self.automaticallyAdjustsScrollViewInsets=NO;
     
     //普通用法
-    [self builderAndSetting];
+    //[self builderAndSetting];
     
     //简化成一句话用法
     //[self builderSimple];
@@ -37,7 +37,7 @@
     //[self buildSenior];
     
     //最好用法
-    //[self buildBest];
+    [self buildBest3];
 }
 
 //最好用法
@@ -60,6 +60,8 @@
     self.tv.tg_header = [TGRefreshOC  refreshWithTarget:self action:@selector(doRefreshSenior) config:^(TGRefreshOC *refresh) {
         refresh.tg_refreshResultBgColor([[UIColor orangeColor] colorWithAlphaComponent:0.8])
         .tg_bgColor([UIColor colorWithWhite:0.8 alpha:1])
+        .tg_fadeinTime(2)
+        .tg_fadeoutTime(1)
         .tg_refreshResultTextColor([UIColor whiteColor]);
     }];
     [self.tv.tg_header beginRefreshing];

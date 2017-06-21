@@ -285,11 +285,11 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
                 self.resultLabel.transform = CGAffineTransformMakeTranslation(0, -self.refreshResultHeight);
                 
                 self.resultLabel.text = self.refreshResultStr;
-                [UIView animateWithDuration:1 animations:^{
+                [UIView animateWithDuration:self.fadeinTime animations:^{
                     self.resultLabel.transform = CGAffineTransformIdentity;
                     self.resultLabel.alpha = 1;
                 } completion:^(BOOL finished) {
-                    [UIView animateWithDuration:2 animations:^{
+                    [UIView animateWithDuration:self.fadeoutTime animations:^{
                         self.resultLabel.transform = CGAffineTransformMakeTranslation(0, -self.refreshResultHeight);
                         self.resultLabel.alpha = 0;
                         _refreshState = RefreshStateNormal;
@@ -403,6 +403,16 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
 
 -(CGFloat) refreshResultHeight{
     return _refreshResultHeight ? _refreshResultHeight : 34;
+}
+
+-(CGFloat) fadeinTime{
+    _fadeinTime = _fadeinTime ? _fadeinTime : 0.5;
+    return _fadeinTime < 0.1 ? 0.1 : ((_fadeinTime > 2) ? 2 : _fadeinTime);
+}
+
+-(CGFloat) fadeoutTime{
+    _fadeoutTime = _fadeoutTime ? _fadeoutTime : 1.5;
+    return _fadeoutTime < 0.1 ? 0.1 : ((_fadeoutTime > 5) ? 5 : _fadeoutTime);
 }
 
 #pragma mark : - 控件相关
@@ -586,6 +596,22 @@ CGPoint relative(CGPoint point, CGFloat x, CGFloat y){
 -(TGRefreshOC * (^)(BOOL))tg_automaticallyChangeAlpha{
     return ^(BOOL autoAlpha){
         self.automaticallyChangeAlpha = autoAlpha;
+        return self;
+    };
+}
+
+-(TGRefreshOC * (^)(CGFloat))tg_fadeinTime{
+    return ^(CGFloat time){
+        time = time < 0.1 ? 0.1 : ((time > 2) ? 2 : time);
+        self.fadeinTime = time;
+        return self;
+    };
+}
+
+-(TGRefreshOC * (^)(CGFloat))tg_fadeoutTime{
+    return ^(CGFloat time){
+        time = time < 0.1 ? 0.1 : ((time > 5) ? 5 : time);
+        self.fadeoutTime = time;
         return self;
     };
 }
