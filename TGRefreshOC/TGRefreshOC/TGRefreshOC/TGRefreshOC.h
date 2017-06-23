@@ -46,9 +46,11 @@ typedef NS_ENUM(NSInteger,TGRefreshAlignment) {
 @property(nonatomic,assign) CGFloat refreshResultHeight;
 /** 自动改变透明度，默认已做优化 */
 @property(nonatomic,assign) BOOL automaticallyChangeAlpha;
+/** 忽略初始的InsetTop */
+@property(nonatomic,assign) BOOL ignoreScrollViewContentInsetTop;
 /** 回显时的渐显时间 0.1 ～ 2秒 默认0.5 */
 @property(nonatomic,assign) CGFloat fadeinTime;
-/** 回赤时的渐隐时间 0.1 ～ 5秒 默认1.5 */
+/** 回显时的渐隐时间 0.1 ～ 5秒 默认1.5 */
 @property(nonatomic,assign) CGFloat fadeoutTime;
 
 -(TGRefreshOC * (^)(TGRefreshKind))tg_kind;
@@ -64,6 +66,7 @@ typedef NS_ENUM(NSInteger,TGRefreshAlignment) {
 -(TGRefreshOC * (^)(UIColor *))tg_refreshResultTextColor;
 -(TGRefreshOC * (^)(CGFloat))tg_refreshResultHeight;
 -(TGRefreshOC * (^)(BOOL))tg_automaticallyChangeAlpha;
+-(TGRefreshOC * (^)(BOOL))tg_ignoreScrollViewContentInsetTop;
 -(TGRefreshOC * (^)(CGFloat))tg_fadeinTime;
 -(TGRefreshOC * (^)(CGFloat))tg_fadeoutTime;
 

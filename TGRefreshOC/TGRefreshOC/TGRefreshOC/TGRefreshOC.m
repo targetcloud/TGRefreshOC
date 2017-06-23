@@ -76,7 +76,8 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
         if( height <= 0) {
             return;
         }
-        self.frame = CGRectMake(0, -height-initInsetTop_, self.sv.bounds.size.width, height);
+        self.frame = CGRectMake(0, self.ignoreScrollViewContentInsetTop -height ? : -height-initInsetTop_, self.sv.bounds.size.width, height);
+        NSLog(@"insetTop>%f  height>%f  Y>%f state>%ld",self.sv.contentInset.top,height,self.sv.contentOffset.y,(long)self.refreshState);
         
         switch (_kind) {
             case RefreshKindQQ:{
@@ -596,6 +597,13 @@ CGPoint relative(CGPoint point, CGFloat x, CGFloat y){
 -(TGRefreshOC * (^)(BOOL))tg_automaticallyChangeAlpha{
     return ^(BOOL autoAlpha){
         self.automaticallyChangeAlpha = autoAlpha;
+        return self;
+    };
+}
+
+-(TGRefreshOC * (^)(BOOL))tg_ignoreScrollViewContentInsetTop{
+    return ^(BOOL ignoreSInsetTop){
+        self.ignoreScrollViewContentInsetTop = ignoreSInsetTop;
         return self;
     };
 }
