@@ -27,10 +27,10 @@
     
     self.automaticallyAdjustsScrollViewInsets=NO;
     
-    NSLog(@" tableview frame %@",NSStringFromCGRect(self.tv.frame));//{{0, 64}, {375, 603}}
+    //NSLog(@" tableview frame %@",NSStringFromCGRect(self.tv.frame));//{{0, 64}, {375, 603}}
     
     //普通用法
-    [self builderAndSetting];
+    //[self builderAndSetting];
     
     //简化成一句话用法
     //[self builderSimple];
@@ -39,7 +39,7 @@
     //[self buildSenior];
     
     //最好用法
-    //[self buildBest3];
+    [self buildBest3];
 }
 
 //最好用法

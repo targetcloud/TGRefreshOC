@@ -76,8 +76,11 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
         if( height <= 0) {
             return;
         }
-        self.frame = CGRectMake(0, self.ignoreScrollViewContentInsetTop -height ? : -height-initInsetTop_, self.sv.bounds.size.width, height);
-        NSLog(@"insetTop>%f  height>%f  Y>%f state>%ld",self.sv.contentInset.top,height,self.sv.contentOffset.y,(long)self.refreshState);
+        self.frame = CGRectMake(0,
+                                self.ignoreScrollViewContentInsetTop -height ? : -height-initInsetTop_,
+                                self.sv.bounds.size.width,
+                                height);
+        //NSLog(@"insetTop>%f  height>%f  Y>%f state>%ld",self.sv.contentInset.top,height,self.sv.contentOffset.y,(long)self.refreshState);
         
         switch (_kind) {
             case RefreshKindQQ:{
@@ -344,7 +347,7 @@ typedef NS_ENUM(NSInteger, TGRefreshState) {
         lbl.font = [UIFont systemFontOfSize:12];
         lbl.backgroundColor = self.refreshResultBgColor;
         [lbl setTextColor:self.refreshResultTextColor];
-        lbl.frame = CGRectMake(self.sv.frame.origin.x, -initInsetTop_, self.sv.frame.size.width, self.refreshResultHeight);
+        lbl.frame = CGRectMake(self.sv.frame.origin.x, self.ignoreScrollViewContentInsetTop ? 0 : -initInsetTop_, self.sv.frame.size.width, self.refreshResultHeight);
         [self.sv addSubview:lbl];
         _resultLabel = lbl;
     }
