@@ -4,7 +4,7 @@
 //
 //  Created by targetcloud on 2017/6/19.
 //  Copyright © 2017年 targetcloud. All rights reserved.
-//
+//  swift版本 https://github.com/targetcloud/TGRefreshSwift
 
 #import "ViewController.h"
 #import "TGRefresh.h"
@@ -39,7 +39,7 @@
     //[self buildSenior];
     
     //最好用法
-    [self buildBest3];
+    [self buildBest];
 }
 
 //最好用法
@@ -104,7 +104,7 @@
 //    label.font = [UIFont systemFontOfSize:13];
 //    label.numberOfLines = 0;
 //    label.textColor = [UIColor whiteColor];
-//    label.text = @"TGRefreshOC下拉刷新控件是一款同时支持QQ样式（橡皮筋）和普通样式的下拉刷新控件。支持链式配置,使用更简单。配置参数更多更灵活。 快来使用一下吧，比你想象中更强大哦:）";
+//    label.text = @"TGRefreshOC下拉刷新控件是一款同时支持QQ样式（橡皮筋）和普通样式的下拉刷新控件。支持链式配置,配置参数丰富,使用更简单灵活。 快来使用一下吧，比你想象中更强大哦:）";
 //    label.textAlignment = NSTextAlignmentCenter;
 //    [self.tv addSubview:label];
 //    self.tv.contentInset = UIEdgeInsetsMake(80, 0, 0, 0);
@@ -165,40 +165,5 @@
     cell.textLabel.text = [NSString stringWithFormat:@"第%ld行测试数据",(long)indexPath.row];
     return cell;
 }
-
-/*
- 测试24种组合
- 1 无对齐，默认对齐（上）    无contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
- 2 中对齐                 无contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
- 3 下对齐                 无contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
- 
- 4 无对齐，默认对齐（上）    无contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
- 5 中对齐                 无contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
- 6 下对齐                 无contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
- 
- 7 无对齐，默认对齐（上）    有contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
- 8 中对齐                 有contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
- 9 下对齐                 有contentInset    normal类型    automaticallyChangeAlpha（NO）- ok
- 
- 10无对齐，默认对齐（上）    有contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
- 11中对齐                 有contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
- 12下对齐                 有contentInset    normal类型    automaticallyChangeAlpha（YES）- ok
- 
- 13无对齐，默认对齐（上）    无contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
- 14中对齐                 无contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
- 15下对齐                 无contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
- 
- 16无对齐，默认对齐（上）    无contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
- 17中对齐                 无contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
- 18下对齐                 无contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
- 
- 19无对齐，默认对齐（上）    有contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
- 20中对齐                 有contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
- 21下对齐                 有contentInset    QQ类型        automaticallyChangeAlpha（NO）- ok
- 
- 22无对齐，默认对齐（上）    有contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
- 23中对齐                 有contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
- 24下对齐                 有contentInset    QQ类型        automaticallyChangeAlpha（YES）- ok
- */
 
 @end
