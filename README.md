@@ -1,4 +1,4 @@
-![Banners](https://github.com/targetcloud/TGRefreshOC/blob/master/logo.png)
+![Banners](https://github.com/targetcloud/TGRefreshOC/blob/master/Banners.png)
 
   ## TGRefreshOC
 弹簧、橡皮筋下拉刷新控件，类似QQ下拉刷新控件，但比QQ 更强，同时支持其他样式，目前总共2种样式，后续不断添加中...
@@ -142,5 +142,5 @@ pod 'TGRefreshOC'
 
 如果你觉得赞，请Star
 
-<img src="https://github.com/targetcloud/TGRefreshOC/blob/master/Banners.png" width = "10%" hight = "10%"/>
+<img src="https://github.com/targetcloud/TGRefreshOC/blob/master/logo.png" width = "20%" hight = "20%"/>
 
