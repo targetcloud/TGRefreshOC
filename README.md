@@ -43,19 +43,19 @@ https://github.com/targetcloud/TGRefreshSwift
 self.automaticallyAdjustsScrollViewInsets=NO;
 ```
 
-### QQ效果
+#### QQ效果
 ```
 self.tableview.tg_header = [TGRefreshOC  refreshWithTarget:self action:@selector(doRefreshSenior) config:nil];
 ```
 
-### 普通效果
+#### 普通效果
 ```
     self.tableview.tg_header = [TGRefreshOC  refreshWithTarget:self action:@selector(doRefreshSenior) config:^(TGRefreshOC *refresh) {
         refresh.tg_kind(RefreshKindNormal);
     }];
 ```
 
-### 更多配置，使用链式编程配置
+#### 更多配置，使用链式编程配置
 ```
     self.tableview.tg_header = [TGRefreshOC  refreshWithTarget:self action:@selector(doRefreshSenior) config:^(TGRefreshOC *refresh) {
         refresh.tg_refreshResultBgColor([[UIColor orangeColor] colorWithAlphaComponent:0.8])
@@ -64,23 +64,23 @@ self.tableview.tg_header = [TGRefreshOC  refreshWithTarget:self action:@selector
     }];
 ```
 
-### 开始刷新
+#### 开始刷新
 ```
 [self.tableview.tg_header beginRefreshing];
 ```
 
-### （网络请求等情况得到数据后）结束刷新
+#### （网络请求等情况得到数据后）结束刷新
 ```
 [self.tableview.tg_header endRefreshing];
 ```
 
-### 结束刷新时的回显
+#### 结束刷新时的回显
 ```
         self.tableview.tg_header.refreshResultStr = @"成功刷新数据来自回显信息”;
         [self.tableview.tg_header endRefreshing];
 ```
 
-### 可以配置的属性
+#### 可以配置的属性
 ```
 /** 类型，默认为QQ弹簧 皮筋效果 */
 @property(nonatomic,assign) TGRefreshKind kind;
