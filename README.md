@@ -9,7 +9,7 @@
 ![Cocoapod](https://img.shields.io/badge/pod-v0.1.2-blue.svg)
 
 
-## Swift version
+## Swift Version
 https://github.com/targetcloud/TGRefreshSwift
 
 
@@ -130,6 +130,7 @@ pod 'TGRefreshOC'
 ## Reference
 - http://blog.csdn.net/callzjy
 - https://github.com/targetcloud/baisibudejie
+- https://github.com/targetcloud/TGImage <img src="https://github.com/targetcloud/TGImage/blob/master/snapShot/Banners.png" width = "12%" hight = "12%"/>
 
 ## 运行效果
 ![](https://github.com/targetcloud/baisibudejie/blob/master/refresha.gif) 
